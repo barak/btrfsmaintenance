@@ -1,0 +1,22 @@
+For this initial released btrfsmaintenance is installed in inactive
+mode.  To activate it run:
+
+systemctl enable btrfsmaintenance-refresh.service
+# and also
+cd /etc/cron.hourly && \
+ln -s ../../usr/share/btrfsmaintenance/btrfsmaintenance-refresh-cron.sh \
+    ./
+
+
+By default btrfsmaintenance reloads its configuration every boot, by
+running btrfsmaintenance-refresh.service when a systemd-enabled system
+is booted in multi-user mode.  To activate it immediately run:
+
+systemctl start btrfsmaintenance-refresh.service
+# or run the script directly
+/usr/share/btrfsmaintenance/btrfsmaintenance-refresh-cron.sh
+
+Running the refresh-cron script is required on Debian or Debian-like
+systems that do not use systemd.
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>, Mon, 10 Jul 2017 20:44:35 -0400
