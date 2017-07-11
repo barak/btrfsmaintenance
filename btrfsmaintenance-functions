@@ -1,0 +1,68 @@
+#!/bin/bash
+#
+# this file contains common code for the btrfs maintenance scripts
+#
+
+# function: evaluate_auto_mountpoint
+# parameter: A variable name
+#
+# this function checks whether the variable contains the special keyword "auto"
+# if yes, all currently mounted btrfs filesystems are evaluated and their mountpoints
+# are put into the parameter variable
+evaluate_auto_mountpoint() {
+	MOUNTPOINTSVAR=\$"$1"
+	if [ "$(eval "expr \"$MOUNTPOINTSVAR\"")" = "auto" ]; then
+		local BTRFS_DEVICES=""
+		local DEVICE=""
+		local MNT=""
+		local MNTLIST=""
+		# find all mounted btrfs filesystems, print their device nodes, sort them
+		# and remove identical entries
+		BTRFS_DEVICES=$(findmnt --types btrfs --output "SOURCE" --nofsroot --noheading | sort | uniq)
+		# find one (and only one) corresponding mountpoint for each btrfs device node
+		for DEVICE in $BTRFS_DEVICES; do
+			MNT=$(findmnt --types btrfs --first-only --noheadings --output "TARGET" --source "$DEVICE")
+			if [ -n "$MNTLIST" ]; then
+				MNTLIST="$MNTLIST:$MNT"
+			else
+				MNTLIST="$MNT"
+			fi
+		done
+		echo "evaluate mounted filesystems: $MNTLIST"
+		eval "$1=$MNTLIST"
+	fi
+}
+
+# function: detect_mixed_bg
+# parameter: path to a mounted filesystem
+#
+# check if the filesystem contains mixed block groups,
+detect_mixed_bg() {
+	# simple test is to read 'btrfs fi df',
+	# (we could look for /sys/sfs/btrfs/UUID/allocation/mixed if we know
+	# the UUID)
+
+	btrfs filesystem df "$1" | grep -q "Data+Metadata"
+}
+
+# function: check_scrub_running
+# parameter: path to a mounted filesystem
+#
+# check if scrub is in progress on a given filesystem, return 0 if it is so
+check_scrub_running() {
+	btrfs scrub status "$1" | grep -q "scrub.*running for"
+}
+
+# function: check_balance_running
+# parameter: path to a mounted filesystem
+#
+# check if balance is in progress on a given filesystem, return 0 if it is so
+check_balance_running() {
+	# 0: not in progress
+	# 1: in progress
+	# 2: other error (EPERM)
+	if btrfs balance status "$1" >& /dev/null; then
+		return 1
+	fi
+	return 0
+}
