@@ -1,5 +1,5 @@
-btrfsmaintenance (0.3.1-1) unstable; urgency=medium
+btrfsmaintenance (0.3.1-1~exp1) experimental; urgency=medium
 
-  * Initial release. (Closes: #813901)
+  * Initial release. (not closing 813901 until upload is made to unstable)
 
  -- Nicholas D Steeves <nsteeves@gmail.com>  Mon, 10 Jul 2017 20:53:14 -0400
