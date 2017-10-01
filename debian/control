@@ -3,7 +3,7 @@ Section: admin
 Priority: optional
 Maintainer: Nicholas D Steeves <nsteeves@gmail.com>
 Build-Depends: debhelper (>= 10), dh-exec (>= 0.14)
-Standards-Version: 4.1.0
+Standards-Version: 4.1.1
 Homepage: https://github.com/kdave/btrfsmaintenance
 Vcs-Git: https://anonscm.debian.org/collab-maint/btrfsmaintenance.git
 Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/btrfsmaintenance.git
