@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+remove() {
+    for i in $(ls /etc/cron.{daily,hourly,monthly,weekly}/btrfs-{balance,defrag,scrub,trim} 2> /dev/null); do
+        if [ ! -e $i ]; then
+            rm $i
+        fi
+    done
+}
