@@ -1,17 +1,19 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
-cleanup() {
-    for i in /etc/cron.{daily,hourly,monthly,weekly}/btrfs-{balance,defrag,scrub,trim}; do
-        if [ -L $i ] && [ ! -e "$i" ]; then
-            rm "$i"
-        fi
-    done
-}
+period="daily hourly monthly weekly"
+operation="balance defrag scrub trim"
 
 if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
-    cleanup
+    for i in $period; do
+        for op in $operation; do
+            if [ -L "/etc/cron.$i/btrfs-$op" ] \
+                   && [ ! -e "/etc/cron.$i/btrfs-$op" ]; then
+                rm "/etc/cron.$i/btrfs-$op"
+            fi
+        done
+    done
 fi
 
 #DEBHELPER#
