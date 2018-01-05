@@ -13,7 +13,7 @@ Architecture: all
 Depends: ${misc:Depends}, btrfs-progs
 Recommends: cron
 Enhances: btrfs-progs
-Description: Automate btrfs maintenance tasks on mountpoints or directories
+Description: automate btrfs maintenance tasks on mountpoints or directories
  This is a set of scripts for the btrfs filesystem that automates the
  following maintenance tasks: scrub, balance, trim, and defragment.
  .
