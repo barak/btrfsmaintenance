@@ -17,9 +17,9 @@ Description: automate btrfs maintenance tasks on mountpoints or directories
  This is a set of scripts for the btrfs filesystem that automates the
  following maintenance tasks: scrub, balance, trim, and defragment.
  .
- Tasks are enabled, disabled, scheduled, and customised from within a
- single text file.  The default configuration assumes an installation
- profile where the root filesystem is on btrfs.
+ Tasks are enabled, disabled, scheduled, and customised from a single
+ text file.  The default configuration assumes an installation profile
+ where / is a btrfs filesystem.
  .
  The default values have been chosen as an even compromise between
  time to complete maintenance, improvement in filesystem performance,
