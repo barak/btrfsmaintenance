@@ -1,8 +1,6 @@
 btrfsmaintenance (0.3.1-17-gf7d61e3-1~exp1) experimental; urgency=medium
 
   * Add postrm script to clean up broken symlinks.
-  * Make postrm script actually work (plus style fixups).
-  * postrm: switch from bash to minimal sh, and refactor.
   * Fix Vcs-Git URL.
   * Install new systemd services and timers.
   * Uncapitalise short description.
