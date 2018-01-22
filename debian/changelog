@@ -1,3 +1,10 @@
+btrfsmaintenance (0.4-1) experimental; urgency=medium
+
+  * New upstream version.
+  * Install new systemd service that detects changes to config.
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Sun, 21 Jan 2018 22:38:37 -0500
+
 btrfsmaintenance (0.3.1-17-gf7d61e3-1~exp1) experimental; urgency=medium
 
   * Add postrm script to clean up broken symlinks.
