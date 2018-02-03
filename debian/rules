@@ -6,6 +6,10 @@ export DH_VERBOSE = 1
 %:
 	dh $@ --with systemd
 
+# Enable this for the next release, if dh needs help
+# An upstream changelog is not present in 0.4.
+#override_dh_installchangelogs:
+#	dh_installchangelogs CHANGES.md
 
 override_dh_systemd_enable:
 #	dh_systemd_enable --no-enable btrfsmaintenance-refresh.service
