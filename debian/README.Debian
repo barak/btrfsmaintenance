@@ -1,13 +1,36 @@
-By default btrfsmaintenance reloads its configuration every boot, by
-running btrfsmaintenance-refresh.service when a systemd-enabled system
-is booted in multi-user mode.  To reload configuration at any time
-immediately run:
+Like smartd, Debian installs btrfsmaintenance in a disabled state.
 
-systemctl start btrfsmaintenance-refresh.service
-# or run the script directly
-/usr/share/btrfsmaintenance/btrfsmaintenance-refresh-cron.sh
+Configuration is found at /etc/default/btrfsmaintenance
 
-Running the refresh-cron script is required on Debian or Debian-like
-systems that do not use systemd.
+Upstream btrfsmaintenance reads this configuration and schedules
+maintenance every boot by running btrfsmaintenance-refresh.service when
+a systemd-enabled system is booted in multi-user mode.  To reload
+configuration manually (recommended) run:
 
- -- Nicholas D Steeves <nsteeves@gmail.com>, Tue, 26 Sep 2017 19:08:48 -0400
+  systemctl restart btrfsmaintenance-refresh.service
+
+To refresh scheduling on every boot run:
+
+  systemctl enable btrfsmaintenance-refresh.service
+
+Enabling that service will also enable btrfsmaintenance-refresh.watch
+It applies scheduling changes whenever /etc/default/btrfsmaintenance
+is modified.  To disable this automatic behaviour run:
+
+  systemctl disable btrfsmaintenance-refresh.watch
+
+For the time being, users who forgo systemd can enable roughly
+equivalent behaviour by running the following script directly:
+
+  /usr/share/btrfsmaintenance/btrfsmaintenance-refresh-cron.sh
+
+To enable this on every boot, add it to /etc/rc.local.  To refresh
+configuration every hour, run:
+
+  cd /etc/cron.hourly
+  ln -s ../../usr/share/btrfsmaintenance/btrfsmaintenance-refresh-cron.sh ./
+
+Configuring btrfsmaintenance using both the systemd and cron methods
+is unsupported; please choose one or the other.
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>, Sat,  3 Feb 2018 13:58:21 -0500
