@@ -10,8 +10,9 @@ Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/btrfsmaintenance.git
 
 Package: btrfsmaintenance
 Architecture: all
-Depends: ${misc:Depends}, btrfs-progs
-Recommends: cron
+Depends: ${misc:Depends}
+       , btrfs-progs
+       , systemd | cron
 Enhances: btrfs-progs
 Description: automate btrfs maintenance tasks on mountpoints or directories
  This is a set of scripts for the btrfs filesystem that automates the
