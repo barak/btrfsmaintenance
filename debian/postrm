@@ -12,8 +12,17 @@ if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
                    && [ ! -e "/etc/cron.$i/btrfs-$op" ]; then
                 rm "/etc/cron.$i/btrfs-$op"
             fi
+            if [ -L "/etc/systemd/system/timers.target.wants/btrfs-$op.timer" ]; then
+                rm "/etc/systemd/system/timers.target.wants/btrfs-$op.timer"
+            fi
         done
     done
+fi
+if [ -L "/etc/systemd/system/multi-user.target.wants/btrfsmaintenance-refresh.service" ]; then
+    rm "/etc/systemd/system/multi-user.target.wants/btrfsmaintenance-refresh.service"
+fi
+if [ -L "/etc/systemd/system/multi-user.target.wants/btrfsmaintenance-refresh.path" ]; then
+    rm "/etc/systemd/system/multi-user.target.wants/btrfsmaintenance-refresh.path"
 fi
 
 #DEBHELPER#
