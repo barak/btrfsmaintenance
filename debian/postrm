@@ -15,6 +15,10 @@ if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
             if [ -L "/etc/systemd/system/timers.target.wants/btrfs-$op.timer" ]; then
                 rm "/etc/systemd/system/timers.target.wants/btrfs-$op.timer"
             fi
+            if [ -L "/etc/systemd/system/btrfs-$op.timer.d/schedule.conf" ]; then
+                rm "/etc/systemd/system/btrfs-$op.timer.d/schedule.conf"
+                rmdir "/etc/systemd/system/btrfs-$op.timer.d"
+            fi
         done
     done
 fi
