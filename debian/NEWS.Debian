@@ -1,0 +1,19 @@
+
+btrfsmaintenance (0.4-1~exp1) experimental; urgency=medium
+
+    Btrfsmaintenance now ships systemd units, but they are not
+    automatically enabled for this release.  Consult README.Debian for
+    more information.  Please file a bug against this package to express
+    your configuration preferences.  Additionally, I am interested in what
+    all Debian users have to say about "Recommendations for balancing as
+    part of regular maintenance"
+    (https://www.spinics.net/lists/linux-btrfs/msg73292.html).  The goal
+    is to ship a configuration that will satisfy the requirements of the
+    majority of users in the first upload to unstable.
+
+    All users will need to decide whether they want to use
+    btrfsmaintenance-refresh-cron.sh or the new systemd units.  To use the
+    new systemd units, take care to insure that all cron jobs involving
+    btrfsmaintenance have been removed.
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Sun, 04 Feb 2018 16:08:08 -0500
