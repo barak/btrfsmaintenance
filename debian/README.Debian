@@ -1,10 +1,13 @@
 Like smartd, Debian installs btrfsmaintenance in a disabled state.
+One day, after consensus on what the most useful and safe default
+configuration has been reached, maintenance operations will be
+automatically enabled.
 
 Configuration is found at /etc/default/btrfsmaintenance
 
-Upstream btrfsmaintenance reads this configuration and schedules
-maintenance every boot by running btrfsmaintenance-refresh.service when
-a systemd-enabled system is booted in multi-user mode.  To reload
+Btrfsmaintenance reads this configuration and schedules maintenance
+every boot by running btrfsmaintenance-refresh.service when a
+systemd-enabled system is booted in multi-user mode.  To reload
 configuration manually (recommended) run:
 
   systemctl restart btrfsmaintenance-refresh.service
@@ -14,10 +17,20 @@ To refresh scheduling on every boot run:
   systemctl enable btrfsmaintenance-refresh.service
 
 Enabling that service will also enable btrfsmaintenance-refresh.watch
-It applies scheduling changes whenever /etc/default/btrfsmaintenance
-is modified.  To disable this automatic behaviour run:
+if is enabled by a normal user who then authenticates for
+org.freedesktop.systemd1.manage-unit-files (root).  Refresh.path
+applies scheduling changes whenever /etc/default/btrfsmaintenance is
+modified.  To disable this automatic behaviour run:
 
   systemctl disable btrfsmaintenance-refresh.watch
+
+Finally, enable systemd timers:
+
+  systemctl enable btrfs-balance.timer  # recommended
+  systemctl enable btrfs-defrag.timer   # recommended
+  systemctl enable btrfs-scrub.timer    # recommended
+  systemctl enable btrfs-trim.timer     # not recommended
+
 
 For the time being, users who forgo systemd can enable roughly
 equivalent behaviour by running the following script directly:
@@ -30,7 +43,12 @@ configuration every hour, run:
   cd /etc/cron.hourly
   ln -s ../../usr/share/btrfsmaintenance/btrfsmaintenance-refresh-cron.sh ./
 
-Configuring btrfsmaintenance using both the systemd and cron methods
-is unsupported; please choose one or the other.
+Btrfsmaintenance must not be configured to use both the systemd and
+cron methods (see upstream README).  One day, when systemd units for
+btrfsmaintenance are automatically activated, those who choose not to
+use systemd will still need to manually activate the refresh-cron
+script, because upstream maintains that providing automatic scheduling
+with cron conflicts with automatically enabled scheduling with
+systemd.
 
- -- Nicholas D Steeves <nsteeves@gmail.com>, Sat,  3 Feb 2018 13:58:21 -0500
+ -- Nicholas D Steeves <nsteeves@gmail.com>, Sun,  4 Feb 2018 15:59:20 -0500
