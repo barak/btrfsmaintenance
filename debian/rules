@@ -4,7 +4,7 @@
 export DH_VERBOSE = 1
 
 %:
-	dh $@ --with systemd
+	dh $@
 
 # Enable this for the next release, if dh needs help
 # An upstream changelog is not present in 0.4.
