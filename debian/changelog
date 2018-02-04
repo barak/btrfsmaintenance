@@ -1,5 +1,38 @@
-btrfsmaintenance (0.3.1-1) UNRELEASED; urgency=medium
+btrfsmaintenance (0.4-1~exp1) experimental; urgency=medium
+
+  * New upstream version.
+  * Install new systemd service that detects changes to config.
+  * Install all services, timers, and watch units in a deactivated state.
+  * Declare compat level 11.
+  * Switch to debhelper 11.
+  * debian/rules: Drop --with systemd, because dh 11 uses
+    dh_installsystemd, and use dh_installsystemd to install units.
+  * Change Depends to systemd | cron (was cron).
+  * Cleanup any enabled maintenance systemd units during postrm.
+  * debian/rules: Add a commented-out stanza to in preparation for
+    the next upstream version, which will provide an upstream
+    changelog that debhelper might not detect.
+  * Update README.Debian to be more clear and informative.
+  * Patch watch file to watch /etc/default instead of /etc/sysconfig.
+  * Cleanup /etc/systemd/system/btrfs-operation.timer.d in postrm
+  * Switch Vcs from alioth to salsa.
+  * Add NEWS.Debian to inform all users about new systemd support.
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Sun, 04 Feb 2018 16:28:46 -0500
+
+btrfsmaintenance (0.3.1-17-gf7d61e3-1~exp1) experimental; urgency=medium
+
+  * Add postrm script to clean up broken symlinks.
+  * Fix Vcs-Git URL.
+  * Install new systemd services and timers.
+  * Uncapitalise short description.
+  * Condense long description.
+  * Declare Standards-Version: 4.1.3. (No additional changes needed)
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Fri, 05 Jan 2018 18:55:21 -0500
+
+btrfsmaintenance (0.3.1-1~exp1) experimental; urgency=medium
 
   * Initial release (Closes: #813901)
 
- -- Nicholas D Steeves <nsteeves@gmail.com>  Wed, 03 May 2017 05:07:55 -0400
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Sun, 01 Oct 2017 12:22:24 -0400

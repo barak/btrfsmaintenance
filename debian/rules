@@ -4,11 +4,37 @@
 export DH_VERBOSE = 1
 
 %:
-	dh $@ --with systemd
+	dh $@
 
+# Enable this for the next release, if dh needs help
+# An upstream changelog is not present in 0.4.
+#override_dh_installchangelogs:
+#	dh_installchangelogs CHANGES.md
 
-override_dh_systemd_enable:
-	dh_systemd_enable --no-enable btrfsmaintenance-refresh.service
+override_dh_installsystemd:
+	dh_installsystemd --no-enable --no-start btrfs-balance.timer
+#	dh_prep btrfs-balance.timer
+	dh_installsystemd --no-enable --no-start btrfs-defrag.timer
+#	dh_prep btrfs-defrag.timer
+	dh_installsystemd --no-enable --no-start btrfs-scrub.timer
+#	dh_prep btrfs-scrub.timer
+	dh_installsystemd --no-enable --no-start btrfs-trim.timer
+#	dh_prep btrfs-trim.timer
+	dh_installsystemd --no-enable --no-start btrfsmaintenance-refresh.path
+#	dh_prep btrfsmaintenance-refresh.path
+	dh_installsystemd --no-enable --no-start btrfsmaintenance-refresh.service
+#	dh_prep btrfsmaintenance-refresh.service
 
-override_dh_systemd_start:
-	dh_systemd_start --no-start btrfsmaintenance-refresh.service
+# override_dh_systemd_enable:
+#	for u in btrfs-balance.timer btrfs-defrag.timer btrfs-scrub.timer \
+#		btrfs-trim.timer btrfsmaintenance-refresh.path \
+#		btrfsmaintenance-refresh.service; do \
+#			dh_systemd_enable --no-enable $u \
+#	done
+
+# override_dh_systemd_start:
+# 	for u in btrfs-balance.timer btrfs-defrag.timer btrfs-scrub.timer \
+# 		btrfs-trim.timer btrfsmaintenance-refresh.path \
+# 		btrfsmaintenance-refresh.service; do \
+# 			dh_systemd_start --no-start $u \
+# 	done

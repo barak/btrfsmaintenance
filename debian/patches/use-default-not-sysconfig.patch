@@ -1,0 +1,20 @@
+Description: Use /etc/default not /etc/sysconfig
+ Debian does not use /etc/sysconfig.  The watch file should watch
+ /etc/default/btrfsmaintenance for changes in configuration.
+Author: Nicholas D Steeves <nsteeves@gmail.com>
+Forwarded: not-needed
+Last-Update: 2018-02-02
+
+--- btrfsmaintenance-0.4.orig/btrfsmaintenance-refresh.path
++++ btrfsmaintenance-0.4/btrfsmaintenance-refresh.path
+@@ -1,8 +1,8 @@
+ [Unit]
+-Description=Watch /etc/sysconfig/btrfsmaintenance
++Description=Watch /etc/default/btrfsmaintenance
+ 
+ [Path]
+-PathChanged=/etc/sysconfig/btrfsmaintenance
++PathChanged=/etc/default/btrfsmaintenance
+ 
+ [Install]
+ WantedBy=multi-user.target
