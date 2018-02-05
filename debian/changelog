@@ -33,6 +33,6 @@ btrfsmaintenance (0.3.1-17-gf7d61e3-1~exp1) experimental; urgency=medium
 
 btrfsmaintenance (0.3.1-1~exp1) experimental; urgency=medium
 
-  * Initial release (Closes: #813901)
+  * Initial release. (Closes: #813901)
 
  -- Nicholas D Steeves <nsteeves@gmail.com>  Sun, 01 Oct 2017 12:22:24 -0400
