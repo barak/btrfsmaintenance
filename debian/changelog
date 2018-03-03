@@ -1,3 +1,11 @@
+btrfsmaintenance (0.4-1) unstable; urgency=medium
+
+  * Release to unstable. (Closes: #826868)
+  * Fix E:debian-rules-is-dh_make-template.
+  * Relax debhelper dependency to 11~ to allow backporting.
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Sat, 03 Mar 2018 15:51:38 -0500
+
 btrfsmaintenance (0.4-1~exp1) experimental; urgency=medium
 
   * New upstream version.
@@ -18,7 +26,7 @@ btrfsmaintenance (0.4-1~exp1) experimental; urgency=medium
   * Switch Vcs from alioth to salsa.
   * Add NEWS.Debian to inform all users about new systemd support.
 
- -- Nicholas D Steeves <nsteeves@gmail.com>  Sun, 04 Feb 2018 16:28:46 -0500
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Tue, 27 Feb 2018 22:09:12 -0500
 
 btrfsmaintenance (0.3.1-17-gf7d61e3-1~exp1) experimental; urgency=medium
 
