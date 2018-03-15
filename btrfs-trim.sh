@@ -15,7 +15,7 @@ if [ -f /etc/default/btrfsmaintenance ] ; then
 fi
 
 LOGIDENTIFIER='btrfs-trim'
-. $(dirname $(realpath $0))/btrfsmaintenance-functions
+. $(dirname $(realpath "$0"))/btrfsmaintenance-functions
 
 {
 evaluate_auto_mountpoint BTRFS_TRIM_MOUNTPOINTS
@@ -24,7 +24,7 @@ IFS=:
 exec 2>&1 # redirect stderr to stdout to catch all output to log destination
 for MNT in $BTRFS_TRIM_MOUNTPOINTS; do
 	IFS="$OIFS"
-	if [ $(stat -f --format=%T "$MNT") != "btrfs" ]; then
+	if ! is_btrfs "$MNT"; then
 		echo "Path $MNT is not btrfs, skipping"
 		continue
 	fi
