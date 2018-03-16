@@ -1,3 +1,11 @@
+btrfsmaintenance (0.4.1-1) unstable; urgency=medium
+
+  * New upstream version.
+  * Fix lintian I: vcs-field-not-canonical.
+  * Drop DH_VERBOSE =1 and delete unneeded commented-out lines.
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Fri, 16 Mar 2018 18:51:11 -0400
+
 btrfsmaintenance (0.4-1) unstable; urgency=medium
 
   * Release to unstable. (Closes: #826868)
