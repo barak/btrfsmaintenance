@@ -1,1 +1,2 @@
 use-default-not-sysconfig.patch
+0002-Import-patch-provided-by-SUSE-to-fix-CVE-2018-14722.patch
