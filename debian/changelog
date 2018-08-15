@@ -2,6 +2,7 @@ btrfsmaintenance (0.4.1-2) UNRELEASED; urgency=high
 
   * Import patch provided by SUSE to fix CVE-2018-14722. (Closes: #906131)
     - 0002-Import-patch-provided-by-SUSE-to-fix-CVE-2018-14722.patch
+  * Declare Standards-Version: 4.2.0. (No additional changes needed)
 
  -- Nicholas D Steeves <nsteeves@gmail.com>  Wed, 15 Aug 2018 00:19:09 -0400
 
