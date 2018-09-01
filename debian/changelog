@@ -1,11 +1,11 @@
-btrfsmaintenance (0.4.1-3) UNRELEASED; urgency=medium
+btrfsmaintenance (0.4.1-3) unstable; urgency=medium
 
   * Import 0003-btrfs-defrag.sh-add-functions-library-to-fix-missing.patch
     from upstream pull request, to address failure of scheduled
     defragmentation in btrfs-defrag.sh due to missing 'is_btrfs' function.
   * Declare Standards-Version: 4.2.1. (No additional changes needed)
 
- -- Nicholas D Steeves <nsteeves@gmail.com>  Sat, 01 Sep 2018 14:26:28 -0400
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Sat, 01 Sep 2018 14:35:13 -0400
 
 btrfsmaintenance (0.4.1-2) unstable; urgency=high
 
