@@ -1,3 +1,11 @@
+btrfsmaintenance (0.4.1-3) UNRELEASED; urgency=medium
+
+  * Import 0003-btrfs-defrag.sh-add-functions-library-to-fix-missing.patch
+    from upstream pull request, to address failure of scheduled
+    defragmentation in btrfs-defrag.sh due to missing 'is_btrfs' function.
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Sat, 01 Sep 2018 14:26:28 -0400
+
 btrfsmaintenance (0.4.1-2) unstable; urgency=high
 
   * Import patch provided by SUSE to fix CVE-2018-14722. (Closes: #906131)
