@@ -1,3 +1,15 @@
+btrfsmaintenance (0.4.2-1) unstable; urgency=medium
+
+  * New upstream version.
+  * README.Debian: Make various grammar and clarity fixes, add the
+    reasoning behind the default policy, and also some essential tips that
+    are not yet general knowledge.
+  * Drop patches which were merged upstream:
+    - 0002-Import-patch-provided-by-SUSE-to-fix-CVE-2018-14722.patch
+    - 0003-btrfs-defrag.sh-add-functions-library-to-fix-missing.patch
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Mon, 01 Oct 2018 21:38:04 -0400
+
 btrfsmaintenance (0.4.1-3) unstable; urgency=medium
 
   * Import 0003-btrfs-defrag.sh-add-functions-library-to-fix-missing.patch
