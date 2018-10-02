@@ -1,23 +1,28 @@
 Like smartd, Debian installs btrfsmaintenance in a disabled state.
-One day, after consensus on what the most useful and safe default
+
+One day, when consensus on the most useful and safe default
 configuration has been reached, maintenance operations will be
-automatically enabled.
+automatically enabled.  It also seems wise to wait until
+btrfsmaintenance supports something like upower, so that these IO and
+CPU intensive jobs can be deferred until AC power is restored, or can
+be paused if a server switches to UPS power.
 
 Configuration is found at /etc/default/btrfsmaintenance
 
-Btrfsmaintenance reads this configuration and schedules maintenance
-every boot by running btrfsmaintenance-refresh.service when a
+This configuration can be reloaded and its maintenance operations
+rescheduled by running btrfsmaintenance-refresh.service each time a
 systemd-enabled system is booted in multi-user mode.  To reload
-configuration manually (recommended) run:
+configuration after editing it (recommended) run:
 
   systemctl restart btrfsmaintenance-refresh.service
 
-To refresh scheduling on every boot run:
+To refresh maintenance schedule automatically whenever the system is
+booted (see below for one caveat) run:
 
   systemctl enable btrfsmaintenance-refresh.service
 
-Enabling that service will also enable btrfsmaintenance-refresh.watch
-if is enabled by a normal user who then authenticates for
+Enabling that service may also enable btrfsmaintenance-refresh.watch,
+particularly when enabled by a normal user who then authenticates for
 org.freedesktop.systemd1.manage-unit-files (root).  Refresh.path
 applies scheduling changes whenever /etc/default/btrfsmaintenance is
 modified.  To disable this automatic behaviour run:
@@ -26,11 +31,22 @@ modified.  To disable this automatic behaviour run:
 
 Finally, enable systemd timers:
 
-  systemctl enable btrfs-balance.timer  # recommended
-  systemctl enable btrfs-defrag.timer   # recommended
-  systemctl enable btrfs-scrub.timer    # recommended
-  systemctl enable btrfs-trim.timer     # not recommended
+  systemctl enable btrfs-balance.timer  # [1]
+  systemctl enable btrfs-defrag.timer   # [2]
+  systemctl enable btrfs-scrub.timer    # [3]
+  systemctl enable btrfs-trim.timer     # [4]
 
+[1] This rewrites all data that is not excluded by a filter.  Consensus has
+    not yet been reached on how much nor how often to run balance, and the
+    ideal policy is workload-dependent.  Some advocate not running it at all.
+[2] See wiki.debian.org/Btrfs for issues with defrag eg: out of space errors,
+    complications when using snapshots, fewer more fine-grained paths are
+    better, etc.  This is also workload-dependent.  Directories with logs,
+    databases, and VM images benefit the most.
+[3] Recommended; however, battery life will be reduced during a scrub.
+[4] Prefer fstrim.timer to this option and leave btrfs-trim.timer disabled,
+    in case fstrim.timer is someday enabled by default for non-rotational
+    disks.
 
 For the time being, users who forgo systemd can enable roughly
 equivalent behaviour by running the following script directly:
@@ -51,4 +67,4 @@ script, because upstream maintains that providing automatic scheduling
 with cron conflicts with automatically enabled scheduling with
 systemd.
 
- -- Nicholas D Steeves <nsteeves@gmail.com>, Sun,  4 Feb 2018 15:59:20 -0500
+ -- Nicholas D Steeves <nsteeves@gmail.com>, Mon,  1 Oct 2018 21:24:11 -0400
