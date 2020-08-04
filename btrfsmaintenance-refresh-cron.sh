@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Copyright (c) 2017 SUSE LINUX GmbH, Nuernberg, Germany.
 
@@ -34,6 +34,18 @@ refresh_cron() {
 	EXPECTED="$1"
 	SCRIPT="$2"
 	echo "Refresh script $SCRIPT for $EXPECTED"
+
+	valid=false
+	for PERIOD in daily weekly monthly none uninstall; do
+		if [ "$PERIOD" = "$EXPECTED" ]; then
+			valid=true
+		fi
+	done
+
+	if ! $valid; then
+		echo "$EXPECTED is not a valid period for cron.  Not changing."
+		return
+	fi
 
 	for PERIOD in daily weekly monthly; do
 	        # NOTE: debian does not allow filenames with dots in /etc/cron.*

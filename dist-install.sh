@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # usage: $0 [sysconfdir]
 #
 # Install configuration template, documentation and scripts. Target path is
@@ -35,4 +35,6 @@ echo "- run ./btrfsmaintenance-refresh-cron.sh to update cron symlinks"
 echo ""
 echo "For systemd.timer-based setups:"
 echo "- copy *.timer files to the systemd.unit path (eg. /usr/lib/systemd/system/ or /etc/systemd/system)"
+echo "- copy *.service files to the systemd.unit path (eg. /usr/lib/systemd/system/ or /etc/systemd/system)"
+echo "- edit cron periods and mount points in $sysconfdir/btrfsmaintenance"
 echo "- run './btrfsmaintenance-refresh-cron.sh timer' to enable and schedule the timers"
