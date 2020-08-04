@@ -1,3 +1,14 @@
+btrfsmaintenance (0.5-1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+    - /etc/default/btrfsmaintenance now optionally supports more granular
+      systemd time and date specification.
+    - balance, scrub, and trim are finally serialised as mutually exclusive
+      operations.
+  * Drop leading white space from NEWS.Debian, and rename the file as "NEWS".
+
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Tue, 04 Aug 2020 10:31:56 -0400
+
 btrfsmaintenance (0.4.2-1) unstable; urgency=medium
 
   * New upstream version.
