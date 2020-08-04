@@ -10,6 +10,7 @@ btrfsmaintenance (0.5-1) UNRELEASED; urgency=medium
     power state (on AC, battery, UPS), plus minor edits for polish.
   * README.Debian: Add Qu Wenruo's position against balancing, with
     citation.
+  * Switch to debhelper-compat 13.
 
  -- Nicholas D Steeves <nsteeves@gmail.com>  Tue, 04 Aug 2020 10:31:56 -0400
 
