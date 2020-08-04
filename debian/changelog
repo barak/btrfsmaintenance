@@ -5,6 +5,12 @@ btrfsmaintenance (0.5-1) UNRELEASED; urgency=medium
       systemd time and date specification.
     - balance, scrub, and trim are finally serialised as mutually exclusive
       operations.
+    - Default filters for btrfs balance are now "5 10" for data (from "1 5 10
+      20 30 40 50"), and "5" for metadata (from "1 5 10 20 30"); this means
+      that less data is rewritten, and that less free space is recovered;
+      this change mitigates some of the longstanding negative effects on
+      system responsiveness during a balance operation because the work
+      completes more quickly.
   * Drop leading white space from NEWS.Debian, and rename the file as "NEWS".
   * README.Debian: Note that btrfsmaintenance is not yet aware of a system's
     power state (on AC, battery, UPS), plus minor edits for polish.
