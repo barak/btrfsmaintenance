@@ -42,6 +42,22 @@ Finally, enable systemd timers:
 [1] This rewrites all data that is not excluded by a filter.  Consensus has
     not yet been reached on how much nor how often to run balance, and the
     ideal policy is workload-dependent.  Some advocate not running it at all.
+    Eg: Qu Wenruo, writes:
+        Full balance makes no sense.
+
+        For older kernel we used to recommend balance based on usage
+        filter to free empty block groups, but now empty block groups
+        are automatically freed thus should cause no problem.
+
+        Balance should be triggered when:
+
+          - There is very unbalanced data/metadata block groups usage.
+            E.g. a lot of data block groups are almost empty while
+            metadata block groups are almost full.  However this
+            should be really rare.
+
+          - You want to convert profile
+        (https://lore.kernel.org/linux-btrfs/fddf59e6-b4c5-307b-2cb4-fbb8e120ac61@gmx.com/)
 [2] See wiki.debian.org/Btrfs for issues with defrag eg: out of space errors,
     complications when using snapshots, fewer more fine-grained paths are
     better, etc.  This is also workload-dependent.  Directories with logs,
@@ -70,4 +86,4 @@ script, because upstream maintains that providing automatic scheduling
 with cron conflicts with automatically enabled scheduling with
 systemd.
 
- -- Nicholas D Steeves <nsteeves@gmail.com>, Mon,  1 Oct 2018 21:24:11 -0400
+ -- Nicholas D Steeves <nsteeves@gmail.com>, Tue,  4 Aug 2020 10:43:20 -0400
