@@ -6,6 +6,8 @@ btrfsmaintenance (0.5-1) UNRELEASED; urgency=medium
     - balance, scrub, and trim are finally serialised as mutually exclusive
       operations.
   * Drop leading white space from NEWS.Debian, and rename the file as "NEWS".
+  * README.Debian: Note that btrfsmaintenance is not yet aware of a system's
+    power state (on AC, battery, UPS), plus minor edits for polish.
 
  -- Nicholas D Steeves <nsteeves@gmail.com>  Tue, 04 Aug 2020 10:31:56 -0400
 

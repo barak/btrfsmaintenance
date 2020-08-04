@@ -4,15 +4,17 @@ One day, when consensus on the most useful and safe default
 configuration has been reached, maintenance operations will be
 automatically enabled.  It also seems wise to wait until
 btrfsmaintenance supports something like upower, so that these IO and
-CPU intensive jobs can be deferred until AC power is restored, or can
-be paused if a server switches to UPS power.
+CPU intensive jobs can be paused if a system switches to battery, or
+deferred until AC power is available.  At present btrfsmaintenance is
+not power-state aware on either laptops or servers with
+uninterruptible power supplies.
 
 Configuration is found at /etc/default/btrfsmaintenance
 
 This configuration can be reloaded and its maintenance operations
-rescheduled by running btrfsmaintenance-refresh.service each time a
-systemd-enabled system is booted in multi-user mode.  To reload
-configuration after editing it (recommended) run:
+rescheduled by running btrfsmaintenance-refresh.service every time a
+systemd-enabled system is booted in multi-user mode.  To manually
+reload configuration after editing it run:
 
   systemctl restart btrfsmaintenance-refresh.service
 
@@ -24,8 +26,9 @@ booted (see below for one caveat) run:
 Enabling that service may also enable btrfsmaintenance-refresh.watch,
 particularly when enabled by a normal user who then authenticates for
 org.freedesktop.systemd1.manage-unit-files (root).  Refresh.path
-applies scheduling changes whenever /etc/default/btrfsmaintenance is
-modified.  To disable this automatic behaviour run:
+watches /etc/default/btrfsmaintenance and applies scheduling changes
+whenever this file is modified.  To disable this automatic behaviour
+run:
 
   systemctl disable btrfsmaintenance-refresh.watch
 
