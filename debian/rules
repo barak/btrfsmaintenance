@@ -3,6 +3,10 @@
 %:
 	dh $@
 
+override_dh_installdeb:
+	dh_installdeb
+	chmod +x debian/btrfsmaintenance/usr/share/btrfsmaintenance/*.sh
+
 override_dh_installsystemd:
 	dh_installsystemd --no-enable --no-start btrfs-balance.timer
 	dh_installsystemd --no-enable --no-start btrfs-defrag.timer
