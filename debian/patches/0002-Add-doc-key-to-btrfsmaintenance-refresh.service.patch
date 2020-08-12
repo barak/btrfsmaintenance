@@ -1,0 +1,23 @@
+From: Nicholas D Steeves <nsteeves@gmail.com>
+Date: Tue, 11 Aug 2020 23:02:48 -0400
+Subject: Add doc key to btrfsmaintenance-refresh.service
+
+This enables `systemctl help servicename` to function correctly by
+displaying the documentation associated with the service.
+
+Closes #83
+---
+ btrfsmaintenance-refresh.service | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/btrfsmaintenance-refresh.service b/btrfsmaintenance-refresh.service
+index 4ed1eb4..14e8e90 100644
+--- a/btrfsmaintenance-refresh.service
++++ b/btrfsmaintenance-refresh.service
+@@ -1,5 +1,6 @@
+ [Unit]
+ Description=Update cron periods from /etc/sysconfig/btrfsmaintenance
++Documentation="file:/usr/share/doc/btrfsmaintenance/README.md.gz"
+ 
+ [Service]
+ ExecStart=/usr/share/btrfsmaintenance/btrfsmaintenance-refresh-cron.sh systemd-timer

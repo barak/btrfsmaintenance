@@ -19,6 +19,8 @@ btrfsmaintenance (0.5-1) UNRELEASED; urgency=medium
   * Switch to debhelper-compat 13.
   * Override dh_installdeb to add missing executable bit to BASH scripts.
   * Set Rules-Requires-Root: no.
+  * Add 0002-Add-doc-key-to-btrfsmaintenance-refresh.service.patch to address
+    lintian complaint systemd-service-file-missing-documentation-key.
   * Declare Standards-Version: 4.5.0. (No additional changes needed)
 
  -- Nicholas D Steeves <nsteeves@gmail.com>  Tue, 04 Aug 2020 10:31:56 -0400
