@@ -21,6 +21,8 @@ btrfsmaintenance (0.5-1) UNRELEASED; urgency=medium
   * Set Rules-Requires-Root: no.
   * Add 0002-Add-doc-key-to-btrfsmaintenance-refresh.service.patch to address
     lintian complaint systemd-service-file-missing-documentation-key.
+  * Update description to address new blk-mq default scheduler.
+    (Closes: #970731)
   * Declare Standards-Version: 4.5.0. (No additional changes needed)
 
  -- Nicholas D Steeves <nsteeves@gmail.com>  Tue, 04 Aug 2020 10:31:56 -0400
