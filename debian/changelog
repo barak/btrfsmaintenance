@@ -1,6 +1,6 @@
-btrfsmaintenance (0.5-1) UNRELEASED; urgency=medium
+btrfsmaintenance (0.5-1) unstable; urgency=medium
 
-  * New upstream release.
+  * New upstream release. (Closes: #970732)
     - /etc/default/btrfsmaintenance now optionally supports more granular
       systemd time and date specification.
     - balance, scrub, and trim are finally serialised as mutually exclusive
@@ -25,7 +25,7 @@ btrfsmaintenance (0.5-1) UNRELEASED; urgency=medium
     (Closes: #970731)
   * Declare Standards-Version: 4.5.0. (No additional changes needed)
 
- -- Nicholas D Steeves <nsteeves@gmail.com>  Tue, 04 Aug 2020 10:31:56 -0400
+ -- Nicholas D Steeves <nsteeves@gmail.com>  Fri, 02 Oct 2020 21:47:48 -0400
 
 btrfsmaintenance (0.4.2-1) unstable; urgency=medium
 
